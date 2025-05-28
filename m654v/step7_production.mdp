@@ -1,0 +1,52 @@
+define                  = -DPOSRES -DPOSRES_FC_BB=0.0 -DPOSRES_TM_BB=418.4  -DPOSRES_FC_SC=0.0 -DPOSRES_FC_LIPID=0.0 -DDIHRES -DDIHRES_FC=0.0
+; DPOSRES_TM_BB force constant on backbone of pore-forming TM helices, in kJ mol-1 A-2 = 1 kcal mol-1 A-2
+
+; Run parameters
+integrator              = md
+dt                      = 0.002
+nsteps                  = 500000000
+
+; Run parameters
+nstxout                 = 50000
+nstvout                 = 50000
+nstenergy               = 5000
+nstlog                  = 5000
+
+; Neighbor searching
+cutoff-scheme           = Verlet
+nstlist                 = 20
+rlist                   = 1.2
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw_switch             = 1.0
+rvdw                    = 1.2
+
+; Electrostatics
+coulombtype             = PME
+rcoulomb                = 1.2
+
+; Temperature coupling
+tcoupl                  = Nose-Hoover
+tc_grps                 = SOLU MEMB SOLV
+tau_t                   = 1.0 1.0 1.0
+ref_t                   = 310 310 310
+
+; Pressure coupling
+pcoupl                  = Parrinello-Rahman
+pcoupltype              = semiisotropic
+tau_p                   = 5.0
+compressibility         = 4.5e-5  4.5e-5
+ref_p                   = 1.01     1.01
+
+; Bond parameters
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+continuation            = yes
+
+; These options remove motion of protein/bilayer relative to the solvent/ions
+nstcomm                 = 1
+comm_mode               = linear
+comm_grps               = SOLU_MEMB SOLV
+
+; scale COM of reference coordinates
+refcoord_scaling = com                ; Scale the center of mass of the reference coordinates with the scaling matrix of the pressure coupling
