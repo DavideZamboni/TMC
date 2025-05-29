@@ -4,10 +4,10 @@ Files used for production and analysis of MD trajectories of TMC1 wt and M654V
 In particular:
  - trj_data:
     - TMC1_original.pdb: starting structure
-    - wt / M654V: files obtained from CHARMM-GUI and subsequent GOMACS run, such as molecular dynamic parameter .mdp 
+    - wt / M654V: files obtained from CHARMM-GUI and subsequent GROMACS run, such as molecular dynamic parameter .mdp 
                   files for minimization, NVT and NPT equilibration and production runs, index and topology files and                      forcefield data used (toppar folder)
  - msd: data for evaluation of mean square displacement of ions
- - scripts: folder with scripts employed during the subsequent analysis:
+ - scripts: folder with scripts employed for the subsequent analysis:
     - cgo_arrow.py / cgo_grid.py: scripts to display vectors and grids in PyMol
     - default_name_charges.json: dictionary linking atom name to its partial charge
     - density_plotter.py: employed to plot density maps
