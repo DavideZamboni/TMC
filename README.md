@@ -1,10 +1,15 @@
 # TMC
 Files used for production and analysis of MD trajectories of TMC1 wt and M654V
 
-In particular:
- - trj_data folder:
+Concerning the topology, note that the organization of include topology (.itp) files found in ./trj_data/wt/toppar/ and ./trj_data/M654V/toppar/ is different than the ones found in common forcefileds as a result of the automated routine of CHARMM-GUI v3.7. 
+The main differences in the forcefield structure are:
+ - the files ffbonded.itp and ffnonbonded.itp are absent as the parameters are directly specified in forcefield.itp
+ - there are no position restraint (posre_*.itp) files as these are specified under an if statement in PROA.itp (protein chain A), PROB.itp (protein chain B) and POPC.itp
+
+ - ./trj_data folder:
     - TMC1_original.pdb: starting structure
-    - wt / M654V folders: input files obtained from CHARMM-GUI, index files, topology files (toppar folder), GROMACS .mdp files containing parameters for minimization, NVT and NPT equilibration and production runs
+    - wt / M654V folders: input files obtained from CHARMM-GUI, index files, GROMACS .mdp files containing parameters for minimization, NVT and NPT equilibration and production runs and forcefield parameters in the toppar directory (see above)
+
  - msd folder: data for evaluation of mean square displacement of ions
  - scripts folder: folder with scripts employed for the subsequent analysis:
     - cgo_arrow.py / cgo_grid.py: scripts to display vectors and grids in PyMol
